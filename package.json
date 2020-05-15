@@ -1,0 +1,96 @@
+{
+  "name": "api-cafeto",
+  "version": "1.0.0",
+  "description": "Api para manejar eventos y usuarios",
+  "scripts": {
+    "build": "gulp server:ts",
+    "start": "node build/bin/www.js",
+    "start:dev": "DEBUG=api-cafeto:* gulp server:dev",
+    "start:dev:watch": "DEBUG=api-cafeto:* gulp server:watch",
+    "start:dev:debug": "node --inspect build/bin/www.js",
+    "test": "jest --config jest.config.json",
+    "test:watch": "DEBUG=test:* npm test -- --verbose --watch",
+    "release": "standard-version -a",
+    "lint": "npm run lint:eslint -- --ext .ts src/",
+    "lint:eslint": "eslint --ignore-path .eslintignore",
+    "lint:fix": "npm run lint -- --fix --cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Alver23/api-cafeto.git"
+  },
+  "keywords": [
+    "Api",
+    "Cafeto",
+    "eventos",
+    "usuarios"
+  ],
+  "author": "Alver Grisales <viga.23@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alver23/api-cafeto/issues"
+  },
+  "homepage": "https://github.com/Alver23/api-cafeto#readme",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-healthcheck": "^0.1.0",
+    "helmet": "^3.22.0",
+    "method-override": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/jest": "^25.2.2",
+    "@types/method-override": "0.0.31",
+    "@types/node": "^14.0.1",
+    "@types/supertest": "^2.0.9",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.9.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{md}": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

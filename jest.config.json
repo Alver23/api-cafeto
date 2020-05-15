@@ -1,0 +1,15 @@
+{
+  "roots": ["<rootDir>/src"],
+  "collectCoverage": true,
+  "coverageDirectory": "./coverage",
+  "testMatch": ["**/?(*.)+(spec).+(ts)"],
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "./tsconfig.spec.json"
+    }
+  },
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  }
+}
