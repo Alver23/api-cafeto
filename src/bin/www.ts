@@ -3,7 +3,7 @@ import * as http from 'http';
 import { config } from '../config';
 import { server } from '../index';
 
-const debug = require('debug')(`${config.appName}:www`);
+const debug = require('debug')(`${config.appName}:server`);
 
 function normalizePort(portArg: string): boolean | number {
 	const parsed = parseInt(portArg, 10);

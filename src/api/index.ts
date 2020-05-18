@@ -1,10 +1,13 @@
 import * as cors from 'cors';
 import * as express from 'express';
 import * as methodOverride from 'method-override';
-import * as bodyParser from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 import * as helmet from 'helmet';
 
 import { errorHandler, fourOFour, logErrors, wrapError } from '../core/middlewares';
+
+import { userRouter } from './users/user-router';
+import { authRouter } from './auth/auth-router';
 
 const api: express.Application = express();
 
@@ -18,12 +21,11 @@ api.use(methodOverride());
 api.use(cors());
 
 // Enable request body parsing
-api.use(bodyParser.json());
-api.use(bodyParser.urlencoded({ extended: true }));
+api.use(json());
+api.use(urlencoded({ extended: true }));
 
-api.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-	res.json({ message: 'hello word' });
-});
+userRouter(api);
+authRouter(api);
 
 api.use(fourOFour);
 api.use(logErrors);
