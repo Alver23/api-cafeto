@@ -1,4 +1,5 @@
 # Api Cafeto
+[![Coverage Status](https://coveralls.io/repos/github/Alver23/api-cafeto/badge.svg?branch=master)](https://coveralls.io/github/Alver23/api-cafeto?branch=master)
 
 ## Description
 Api Rest where you can manage events and users

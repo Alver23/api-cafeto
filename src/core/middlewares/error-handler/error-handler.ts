@@ -1,15 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
-import * as boom from '@hapi/boom';
+import { badImplementation } from '@hapi/boom';
 
 import { config } from '../../../config';
+import { setResponse } from '../../../utils';
 
 const debug = require('debug')(`${config.appName}:error-handler`);
 
 export const withErrorStack = (error: any, stack: any): any => {
+	const { statusCode, ...otherValues } = error;
+	const response = setResponse({
+		status: statusCode,
+		...otherValues,
+	});
 	if (config.env) {
-		return { ...error, stack };
+		return { ...response, stack };
 	}
-	return { error };
+	return response;
 };
 
 export const logErrors = (error: any, req: Request, res: Response, next: NextFunction): void => {
@@ -19,7 +25,7 @@ export const logErrors = (error: any, req: Request, res: Response, next: NextFun
 
 export const wrapError = (error: any, req: Request, res: Response, next: NextFunction): void => {
 	if (!error.isBoom) {
-		next(boom.badImplementation(error));
+		next(badImplementation(error));
 	}
 	next(error);
 };
