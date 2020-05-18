@@ -4,9 +4,6 @@ node_js:
 cache:
   directories:
     - "node_modules"
-env:
-  - AUTH_JWT_EXPIRES=15m
-  - AUTH_JWT_SECRET=mySecret
 jobs:
   include:
     - stage: lint
