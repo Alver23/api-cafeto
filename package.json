@@ -8,7 +8,7 @@
     "start:dev": "DEBUG=api-cafeto:* gulp server:dev",
     "start:dev:watch": "DEBUG=api-cafeto:* gulp server:watch",
     "start:dev:debug": "npm run build && node --inspect build/bin/www.js",
-    "test": "jest --config jest.config.json",
+    "test": "jest --config jest.config.json --detectOpenHandles",
     "test:watch": "DEBUG=test:* npm test -- --verbose --watch",
     "release": "standard-version -a",
     "lint": "npm run lint:eslint -- --ext .ts src/",
@@ -50,6 +50,7 @@
     "method-override": "^3.0.0",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.9"

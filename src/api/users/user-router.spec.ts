@@ -3,6 +3,10 @@ import { userRouter } from './user-router';
 
 import supertest = require('supertest');
 
+jest.mock('../../core/middlewares/protect-routes/protect-routes', () => ({
+	protectRoutes: (req, res, next) => next(),
+}));
+
 jest.mock('./user-controller', () => {
 	return {
 		userController: {
