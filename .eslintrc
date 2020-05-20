@@ -18,7 +18,7 @@
 		"plugin:import/typescript"
 	],
 	"rules": {
-		"import/extensions": ["error", "ignorePackages", {"ts": "never"}],
+		"import/extensions": ["error", "ignorePackages", { "ts": "never" }],
 		"prettier/prettier": "warn",
 		"@typescript-eslint/no-var-requires": "off",
 		"import/prefer-default-export": "off",

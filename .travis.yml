@@ -1,10 +1,10 @@
 language: node_js
 cache:
   directories:
-  - node_modules
-  - "~/.npm"
+    - node_modules
+    - '~/.npm'
 node_js:
-- 12
+  - 12
 git:
   depth: 3
 script:
@@ -16,8 +16,8 @@ notifications:
     rooms:
       secure: dpW1GC9Ohr4bRObfrVtRCSE2sQSQdSySZmymnPHG757nbgWDdDRom2BBxP6Dj09CchdiECpgX8lj6PCjiQsP27d37x8WcWPMdDAF1PGZdLrhs31IlUQRkg0N/LPU4nQAZdCzgFZ3ki11HkjVIu2dC+PRpnY6fNN2zpWeZpgZAcVfUNVMuBmVep40OQkkY6J8WBUCsHycTynWP3zaNZbGpyD5BMcwyAjyOF8ysA4yaiJwu4O0Vre1Da5ZQ+zKSmtcHbJoMqrSTuheTIl7Ap4uvoEbKhxXpy4eQmBO7Zho/QqcOoKqmZEml1/dvdLhA+XELJLjO9mF7p0POpxYqlCB2RCq47CYX2FLZOceZCCwgvJ93NfPD00JcXihUk02R82deNqDa2+AMJeeYFaqwgQEea0iY6fzgf3042jwr2oRP07GpBXvkEZYzlR/Ksu9hM497A8B16YkoTlLyyTcUEzLy/R3fho6y7OhvTzEM9O2ttGLGtWtRj9rhcqtUxmFw3267PZ62Iaj+WZGWlEtvUbDEmrDGWc7AWXKNylZ0tVfY58gMfSoIBcXG3NX8d1LjzXIZJexZrhO1M4Ei1tJyM3koOIx1iQXbmSNAmdZdn38yybnqNQvdeP2wX+Si3O9PnLVcEDjFC0EzlpXClG7/kifjLQcsvZx30utFMJk8nUEIsc=
   email:
-  - viga.23@hotmail.com
-  - alver01.12.1990@gmail.com
+    - viga.23@hotmail.com
+    - alver01.12.1990@gmail.com
 deploy:
   provider: heroku
   api_key:

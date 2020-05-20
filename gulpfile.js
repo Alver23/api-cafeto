@@ -9,17 +9,17 @@ const PATHS = {
   tsconfig: './tsconfig.json',
 };
 
-gulp.task('server:ts', done => {
+gulp.task('server:ts', (done) => {
   const tsProject = ts.createProject(PATHS.tsconfig);
   return tsProject
     .src()
     .pipe(tsProject())
     .pipe(gulp.dest('build'))
-    .on('error', error => done(error))
+    .on('error', (error) => done(error))
     .on('end', () => done());
 });
 
-gulp.task('server:watch', done => {
+gulp.task('server:watch', (done) => {
   const stream = nodemon({
     script: 'build/bin/www.js',
     env: { NODE_ENV: 'development' },
@@ -28,10 +28,9 @@ gulp.task('server:watch', done => {
     tasks: ['server:ts'],
     stdout: true,
   });
-  return stream
-    .on('quit', function() {
-      done();
-    });
+  return stream.on('quit', function () {
+    done();
+  });
 });
 
 gulp.task('server:dev', gulp.series('server:ts', 'server:watch'));

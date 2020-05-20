@@ -2,7 +2,7 @@ import * as passport from 'passport';
 import { unauthorized } from '@hapi/boom';
 import { Request, Response, NextFunction } from 'express';
 
-import './../../../api/auth/strategies/jwt';
+import '../../../api/auth/strategies/jwt';
 import { UserViewModel } from '../../../api/users/models/user';
 
 export const protectRoutes = (req: Request, res: Response, next: NextFunction) => {
