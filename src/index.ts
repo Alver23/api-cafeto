@@ -4,11 +4,12 @@ import * as cookieParser from 'cookie-parser';
 
 import api from './api';
 import { config } from './config';
+
+import { requestLogger, fourOFour } from './core/middlewares';
+
 const {
 	staticFiles: { directory },
 } = config;
-
-import { requestLogger, fourOFour } from './core/middlewares';
 
 const basePath = '/cafeto';
 

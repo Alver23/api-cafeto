@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
+import { NOT_FOUND, OK, NO_CONTENT } from 'http-status-codes';
 import { EventService } from './services/event-service-interface';
 import { eventService } from './services/event-service';
 import { setResponse } from '../../utils';
-import { NOT_FOUND, OK, NO_CONTENT } from 'http-status-codes';
 
 import { HttpMessages } from '../../core/messages/http-messages';
 import { config } from '../../config';
+
 const {
 	staticFiles: { directory, pathUploads },
 	domain,
@@ -39,7 +40,7 @@ export class EventController {
 		try {
 			const imageUrl = this.getFilePath(req);
 			let { body } = req;
-			const user: any = req.user;
+			const { user } = req;
 			body = { ...body, userId: user.id };
 
 			if (imageUrl) {
@@ -62,7 +63,7 @@ export class EventController {
 			const {
 				params: { id },
 			} = req;
-			const user: any = req.user;
+			const { user } = req;
 			body = { ...body, userId: user.id };
 
 			if (imageUrl) {
@@ -82,7 +83,7 @@ export class EventController {
 
 	public async getEvents(req: Request, res: Response, next: NextFunction) {
 		try {
-			const user: any = req.user;
+			const { user } = req;
 			const { id: userId } = user;
 			const data = await this.eventServiceInstance.findAll({ userId });
 			res.json(
@@ -102,7 +103,7 @@ export class EventController {
 				params: { id },
 			} = req;
 			const data = await this.eventServiceInstance.findOne({ query: { id } });
-			const status = !!data ? OK : NOT_FOUND;
+			const status = data ? OK : NOT_FOUND;
 			res.status(status).json(setResponse({ data, status }));
 		} catch (error) {
 			next(error);

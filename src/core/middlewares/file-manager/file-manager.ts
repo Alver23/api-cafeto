@@ -1,6 +1,6 @@
-const multer = require('multer');
-
 import { config } from '../../../config';
+
+const multer = require('multer');
 
 export const diskStorage = (fileDirectory: string) => {
 	const {
@@ -9,10 +9,10 @@ export const diskStorage = (fileDirectory: string) => {
 	const destination = `build/${directory}/${fileDirectory}`;
 
 	return multer.diskStorage({
-		destination: function (req, file, cb) {
+		destination(req, file, cb) {
 			cb(null, destination);
 		},
-		filename: function (req, file, cb) {
+		filename(req, file, cb) {
 			const [name, extension] = file.originalname.split('.');
 			cb(null, `${name}-${Date.now()}.${extension}`);
 		},

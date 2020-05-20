@@ -5,6 +5,7 @@ import { protectRoutes } from '../../core/middlewares/protect-routes/protect-rou
 import { validationHandler, diskStorage, storageMiddleware } from '../../core/middlewares';
 import { eventSchema } from './schema/event';
 import { config } from '../../config';
+
 const {
 	staticFiles: { pathUploads },
 } = config;

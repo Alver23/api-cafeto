@@ -13,6 +13,7 @@ export class CEventService implements EventService {
 	public async create(data: EventAddModel) {
 		return Event.create<Event>(data);
 	}
+
 	public async update(id: string, data) {
 		return Event.update<Event>(data, { where: { id: parseInt(id, 10) } });
 	}
