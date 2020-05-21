@@ -14,11 +14,6 @@ Api Rest Para administrar eventos y registrar usuarios.
 $ npm install
 ```
 
-## Ejecutar Test unitarios
-```bash
-$ npm test
-```
-
 ## Ejecutar aplicación
 
 ```bash
@@ -41,8 +36,14 @@ $ npm run start
 $ npm run build
 ```
 
+## Ejecutar Test unitarios
+```bash
+$ npm test
+```
+
 ## Documentación
-[Ver más](https://api-cafeto.herokuapp.com/cafeto/api/docs)
+Para usar los endpoint protegidos por el token de autorizacion, el usuario debe [autenticarse](https://api-cafeto.herokuapp.com/cafeto/api/docs/#/Auth/auth) para obtener el token, este token se debe enviar en cada solicitud http que se realice a la API.
+[documentación de uso](https://api-cafeto.herokuapp.com/cafeto/api/docs)
 
 ## Contacto
-- Author - [Alver Grisales](https://twitter.com/23Alver)
+- Autor - [Alver Grisales](https://twitter.com/23Alver)

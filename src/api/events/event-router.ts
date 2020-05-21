@@ -3,17 +3,13 @@ import { Router, Request, Response, NextFunction, Application } from 'express';
 import { eventController } from './event-controller';
 import { protectRoutes } from '../../core/middlewares/protect-routes/protect-routes';
 import { validationHandler, diskStorage, storageMiddleware } from '../../core/middlewares';
+import { cloudinaryMiddleware } from '../../core/middlewares/file-manager/file-manager';
 import { eventSchema } from './schema/event';
-import { config } from '../../config';
-
-const {
-	staticFiles: { pathUploads },
-} = config;
 
 export const eventRouter = (app: Application): void => {
 	const basePath = '/events';
 	const router = Router();
-	const storage = diskStorage(pathUploads);
+	const storage = diskStorage();
 	const upload = storageMiddleware(storage);
 	app.use(protectRoutes);
 	app.use(basePath, router);
@@ -23,11 +19,12 @@ export const eventRouter = (app: Application): void => {
 	router.post(
 		'/',
 		upload.single('image'),
+		cloudinaryMiddleware,
 		validationHandler(eventSchema),
 		(req: Request, res: Response, next: NextFunction) => eventController.createEvent(req, res, next),
 	);
 
-	router.put('/:id', upload.single('image'), (req: Request, res: Response, next: NextFunction) =>
+	router.put('/:id', upload.single('image'), cloudinaryMiddleware, (req: Request, res: Response, next: NextFunction) =>
 		eventController.updateEvent(req, res, next),
 	);
 

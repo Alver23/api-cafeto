@@ -112,12 +112,7 @@
           "400": {
             "description": "Bad request"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
+        }
       }
     },
     "/events": {
@@ -268,7 +263,12 @@
           "404": {
             "description": "Recurso no encontrado"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
       }
     },
     "/events/{id}": {
@@ -292,7 +292,12 @@
           "404": {
             "description": "Recurso no encontrado"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
       }
     }
   },
