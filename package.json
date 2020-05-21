@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Api para manejar eventos y usuarios",
   "scripts": {
-    "build": "gulp server:ts",
+    "build": "gulp server:build",
     "start": "node build/bin/www.js",
     "start:dev": "DEBUG=api-cafeto:* gulp server:dev",
     "start:dev:watch": "DEBUG=api-cafeto:* gulp server:watch",
