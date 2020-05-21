@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/node';
 import { NextFunction, Request, Response } from 'express';
 import { badImplementation } from '@hapi/boom';
 
@@ -5,6 +6,8 @@ import { config } from '../../../config';
 import { setResponse } from '../../../utils';
 
 const debug = require('debug')(`${config.appName}:error-handler`);
+
+Sentry.init({ dsn: config.sentryDsn });
 
 export const withErrorStack = (error: any, stack: any): any => {
 	const { statusCode, ...otherValues } = error;
@@ -20,6 +23,9 @@ export const withErrorStack = (error: any, stack: any): any => {
 
 export const logErrors = (error: any, req: Request, res: Response, next: NextFunction): void => {
 	debug(error);
+	if (!config.env) {
+		Sentry.captureException(error);
+	}
 	next(error);
 };
 
