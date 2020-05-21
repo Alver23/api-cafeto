@@ -4,8 +4,8 @@ import * as methodOverride from 'method-override';
 import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerDoc = require('./swagger/swagger.json');
+import * as swaggerUi from 'swagger-ui-express';
+import * as swaggerDoc from './swagger/swagger.json';
 
 import { errorHandler, fourOFour, logErrors, wrapError } from '../core/middlewares';
 

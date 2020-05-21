@@ -9,7 +9,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "typeRoots": ["node_modules/@types"],
-    "lib": ["ES2018", "dom"]
+    "lib": ["ES2018", "dom"],
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["src/**/*.spec.ts", "src/**/*-mocks.ts"]
