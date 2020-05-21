@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-const myEnv = dotenv.config();
+dotenv.config();
 
 const port = process.env.PORT;
 const env = process.env.NODE_ENV !== 'production';
@@ -23,5 +23,10 @@ export const config = {
 	staticFiles: {
 		directory: 'public',
 		pathUploads: 'uploads/',
+	},
+	cloud: {
+		name: process.env.CLOUD_NAME,
+		apiKey: process.env.CLOUD_API_KEY,
+		apiSecret: process.env.CLOUD_API_SECRET,
 	},
 };

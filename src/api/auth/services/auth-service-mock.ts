@@ -1,8 +1,7 @@
 import { AuthService } from './auth-service-interface';
-import { UserViewModel } from '../../users/models/user';
 
 export class AuthServiceMock implements AuthService {
-	createToken(user: UserViewModel): string {
+	createToken(): string {
 		return '1234dede';
 	}
 }

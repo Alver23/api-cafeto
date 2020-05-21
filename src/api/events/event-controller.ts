@@ -5,12 +5,6 @@ import { eventService } from './services/event-service';
 import { setResponse } from '../../utils';
 
 import { HttpMessages } from '../../core/messages/http-messages';
-import { config } from '../../config';
-
-const {
-	staticFiles: { directory, pathUploads },
-	domain,
-} = config;
 
 export class EventController {
 	constructor(private readonly eventServiceInstance: EventService) {}
@@ -27,21 +21,12 @@ export class EventController {
 		}[type];
 	}
 
-	private getFilePath(req) {
-		const { file } = req;
-		let imageUrl;
-		if (file) {
-			imageUrl = `${domain}/${directory}/${pathUploads}${file.filename}`;
-		}
-		return imageUrl;
-	}
-
 	public async createEvent(req: any, res: Response, next: NextFunction) {
 		try {
-			const imageUrl = this.getFilePath(req);
 			let { body } = req;
 			const {
 				user: { id: userId },
+				cloudinaryFileUrl: imageUrl = '',
 			} = req;
 			body = { ...body, userId };
 
@@ -60,10 +45,10 @@ export class EventController {
 
 	public async updateEvent(req: any, res: Response, next: NextFunction) {
 		try {
-			const imageUrl = this.getFilePath(req);
 			let { body } = req;
 			const {
 				params: { id },
+				cloudinaryFileUrl: imageUrl = '',
 			} = req;
 			const {
 				user: { id: userId },

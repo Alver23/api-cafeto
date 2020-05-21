@@ -1,8 +1,7 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const nodemon = require('gulp-nodemon');
-const { fork } = require('child_process');
-const { join } = require('path');
+const shell = require('gulp-shell');
 
 const PATHS = {
   server: './src',
@@ -39,5 +38,8 @@ gulp.task('server:watch', (done) => {
   });
 });
 
-gulp.task('server:build', gulp.series('server:ts', 'server:swagger'));
-gulp.task('server:dev', gulp.series('server:ts', 'server:swagger', 'server:watch'));
+
+gulp.task('server:folder-upload', shell.task('rm -rf build/public && mkdir build/public'))
+
+gulp.task('server:build', gulp.series('server:ts', 'server:swagger', 'server:folder-upload'));
+gulp.task('server:dev', gulp.series('server:ts', 'server:swagger', 'server:folder-upload', 'server:watch'));
