@@ -29,4 +29,5 @@ export const config = {
 		apiKey: process.env.CLOUD_API_KEY,
 		apiSecret: process.env.CLOUD_API_SECRET,
 	},
+	sentryDsn: process.env.SENTRY_DSN,
 };
