@@ -19,6 +19,14 @@ gulp.task('server:ts', (done) => {
     .on('end', () => done());
 });
 
+gulp.task('server:swagger', () =>
+  gulp
+    .src([`${PATHS.server}/api/swagger/**/*`])
+    .pipe(gulp.dest('build/api/swagger')),
+);
+
+gulp.task('server:build', () => gulp.series('server:ts', 'server:swagger'));
+
 gulp.task('server:watch', (done) => {
   const stream = nodemon({
     script: 'build/bin/www.js',
@@ -33,4 +41,4 @@ gulp.task('server:watch', (done) => {
   });
 });
 
-gulp.task('server:dev', gulp.series('server:ts', 'server:watch'));
+gulp.task('server:dev', gulp.series('server:ts', 'server:swagger', 'server:watch'));

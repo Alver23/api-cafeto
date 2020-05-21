@@ -1,0 +1,345 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.0.0",
+    "title": "Api Cafeto",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "viga.23@hotmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "api-cafeto.herokuapp.com",
+  "basePath": "/cafeto/api",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Autenticación basica y por proveedores (OAuth, Facebook)"
+    },
+    {
+      "name": "User",
+      "description": "Crear y consultar los usuarios del sistema"
+    },
+    {
+      "name": "Events",
+      "description": "Administrar eventos"
+    }
+  ],
+  "schemes": ["https", "http"],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Autenticar usuario en el sistema",
+        "operationId": "auth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Usuario autenticado"
+          },
+          "401": {
+            "description": "Usuario no autorizado"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/login-provider": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Autenticar un usuario por proveedores",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Crear usuario",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario creado"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Retorna una lista de usuarios",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Crea un usuario",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": ["Events"],
+        "summary": "Retorna una lista de eventos",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["Events"],
+        "summary": "Crea un nuevo evento",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Imagen del evento.",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["Events"],
+        "summary": "Actualiza un nuevo",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Imagen del evento.",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Events"],
+        "summary": "Elimina un evento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del evento",
+            "required": true,
+            "type": "string",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Recurso no encontrado"
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "tags": ["Events"],
+        "summary": "Obtener un evento por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del evento",
+            "required": true,
+            "type": "string",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Recurso no encontrado"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    },
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "body_1": {
+      "type": "object",
+      "required": ["email", "name", "password"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": ["email", "name", "password"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
