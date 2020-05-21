@@ -23,10 +23,10 @@ export class EventController {
 
 	public async createEvent(req: any, res: Response, next: NextFunction) {
 		try {
-			const imageUrl = req.cloudinaryFileUrl;
 			let { body } = req;
 			const {
 				user: { id: userId },
+				cloudinaryFileUrl: imageUrl = '',
 			} = req;
 			body = { ...body, userId };
 
@@ -45,10 +45,10 @@ export class EventController {
 
 	public async updateEvent(req: any, res: Response, next: NextFunction) {
 		try {
-			const imageUrl = req.cloudinaryFileUrl;
 			let { body } = req;
 			const {
 				params: { id },
+				cloudinaryFileUrl: imageUrl = '',
 			} = req;
 			const {
 				user: { id: userId },

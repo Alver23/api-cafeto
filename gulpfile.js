@@ -39,7 +39,7 @@ gulp.task('server:watch', (done) => {
 });
 
 
-gulp.task('server:folder-upload', shell.task('mkdir build/public'))
+gulp.task('server:folder-upload', shell.task('rm -rf build/public && mkdir build/public'))
 
 gulp.task('server:build', gulp.series('server:ts', 'server:swagger', 'server:folder-upload'));
 gulp.task('server:dev', gulp.series('server:ts', 'server:swagger', 'server:folder-upload', 'server:watch'));
