@@ -311,38 +311,6 @@
       "in": "header"
     }
   },
-  "definitions": {
-    "body_1": {
-      "type": "object",
-      "required": ["email", "name", "password"],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "body": {
-      "type": "object",
-      "required": ["email", "name", "password"],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    }
-  },
   "externalDocs": {
     "description": "Find out more about Swagger",
     "url": "http://swagger.io"
