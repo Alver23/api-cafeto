@@ -6,7 +6,7 @@ import { mockRequest, mockResponse } from '../__mocks__/fake-request';
 import mocks from './mocks.json';
 
 jest.mock('./services/auth-service', () => jest.fn());
-jest.mock('../users/services/user-service', () => jest.fn());
+jest.mock('../users/services', () => jest.fn());
 jest.mock('passport', () => ({
 	authenticate: (type, cb) => {
 		return (req) => {

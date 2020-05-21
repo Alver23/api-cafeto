@@ -4,7 +4,7 @@ import { NextFunction, Response } from 'express';
 
 import './strategies/basic';
 import { UserViewModel } from '../users/models/user';
-import { userService } from '../users/services/user-service';
+import { userService } from '../users/services';
 import { authService } from './services/auth-service';
 import { AuthService } from './services/auth-service-interface';
 

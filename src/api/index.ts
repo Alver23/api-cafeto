@@ -1,15 +1,19 @@
 import * as cors from 'cors';
 import * as express from 'express';
 import * as methodOverride from 'method-override';
-import { json, urlencoded } from 'body-parser';
+import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 
 import { errorHandler, fourOFour, logErrors, wrapError } from '../core/middlewares';
 
 import { userRouter } from './users/user-router';
 import { authRouter } from './auth/auth-router';
+import { eventRouter } from './events/event-router';
 
 const api: express.Application = express();
+
+// Enable CORS
+api.use(cors());
 
 // Helmet Segurity
 api.use(helmet());
@@ -17,15 +21,15 @@ api.use(helmet());
 // Enable method-override for old clients
 api.use(methodOverride());
 
-// Enable CORS
-api.use(cors());
+// parse application/json
+api.use(bodyParser.json());
 
 // Enable request body parsing
-api.use(json());
-api.use(urlencoded({ extended: true }));
+api.use(bodyParser.urlencoded({ extended: false }));
 
 userRouter(api);
 authRouter(api);
+eventRouter(api);
 
 api.use(fourOFour);
 api.use(logErrors);

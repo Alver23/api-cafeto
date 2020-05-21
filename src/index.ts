@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
 
@@ -5,6 +6,10 @@ import api from './api';
 import { config } from './config';
 
 import { requestLogger, fourOFour } from './core/middlewares';
+
+const {
+	staticFiles: { directory },
+} = config;
 
 const basePath = '/cafeto';
 
@@ -18,6 +23,8 @@ if (config.env) {
 const healthCheck: any = require('express-healthcheck')();
 
 server.use(cookieParser());
+
+server.use(`/${directory}`, express.static(path.join(__dirname, directory)));
 
 server.get(`${basePath}/health(check)?`, healthCheck);
 server.use(`${basePath}/api`, api);

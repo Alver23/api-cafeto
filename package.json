@@ -8,12 +8,13 @@
     "start:dev": "DEBUG=api-cafeto:* gulp server:dev",
     "start:dev:watch": "DEBUG=api-cafeto:* gulp server:watch",
     "start:dev:debug": "npm run build && node --inspect build/bin/www.js",
-    "test": "jest --config jest.config.json",
+    "test": "jest --config jest.config.json --detectOpenHandles",
     "test:watch": "DEBUG=test:* npm test -- --verbose --watch",
     "release": "standard-version -a",
     "lint": "npm run lint:eslint -- --ext .ts src/",
     "lint:eslint": "eslint --ignore-path .eslintignore",
     "lint:fix": "npm run lint -- --fix --cache",
+    "prettier": "prettier --config .prettierrc.json --ignore-path ./.prettierignore --write src/**/*.ts",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -48,8 +49,10 @@
     "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
+    "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.9"
@@ -66,6 +69,7 @@
     "@types/hapi__joi": "^17.1.0",
     "@types/jest": "^25.2.2",
     "@types/method-override": "0.0.31",
+    "@types/multer": "^1.4.3",
     "@types/node": "^14.0.1",
     "@types/passport": "^1.0.3",
     "@types/passport-http": "^0.3.8",
@@ -99,11 +103,8 @@
     }
   },
   "lint-staged": {
-    "*.{md}": [
-      "prettier --write"
-    ],
-    "*.ts": [
-      "prettier --write"
+    "src/**/*.{ts,json}": [
+      "prettier --write --config .prettierrc.json"
     ]
   },
   "commitlint": {

@@ -22,7 +22,7 @@ export interface UserModel extends UserAddModel {
 	updatedAt: Date;
 }
 
-export class User extends Model {
+export class User extends Model<UserModel> {
 	public id!: number;
 
 	public name!: string;
