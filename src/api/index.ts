@@ -4,6 +4,9 @@ import * as methodOverride from 'method-override';
 import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('./swagger/swagger.json');
+
 import { errorHandler, fourOFour, logErrors, wrapError } from '../core/middlewares';
 
 import { userRouter } from './users/user-router';
@@ -27,6 +30,7 @@ api.use(bodyParser.json());
 // Enable request body parsing
 api.use(bodyParser.urlencoded({ extended: false }));
 
+api.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 userRouter(api);
 authRouter(api);
 eventRouter(api);
