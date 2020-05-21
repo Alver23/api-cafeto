@@ -1,5 +1,4 @@
 import { EventService } from './event-service-interface';
-import { EventAddModel } from '../models/event';
 
 export class EventServiceMock implements EventService {
 	private readonly eventMock = {
@@ -12,25 +11,25 @@ export class EventServiceMock implements EventService {
 		userId: 1,
 	};
 
-	async create(data: EventAddModel) {
+	async create() {
 		return this.eventMock;
 	}
 
-	async update(id: string, data: EventAddModel) {
+	async update() {
 		return [1];
 	}
 
-	async findAll({ userId }: { userId: number }) {
+	async findAll() {
 		return [{ ...this.eventMock, isOwner: true }];
 	}
 
-	async findOne({ query }: { query: any }) {
+	async findOne() {
 		return this.eventMock;
 	}
 
-	async deleteOne(id: string) {
+	async deleteOne() {
 		return 1;
 	}
 }
 
-export const eventServiceMock: EventService = new EventServiceMock();
+export const eventServiceMock = new EventServiceMock();

@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-const myEnv = dotenv.config();
+dotenv.config();
 
 const port = process.env.PORT;
 const env = process.env.NODE_ENV !== 'production';

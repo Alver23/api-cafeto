@@ -1,5 +1,4 @@
 import { UserService } from './user-service-interface';
-import { UserAddModel } from '../models/user';
 
 export class UserServiceMock implements UserService {
 	private readonly mock = { id: 1, name: 'Fake name', email: 'fake@fake.com' };
@@ -8,15 +7,15 @@ export class UserServiceMock implements UserService {
 		return [this.mock];
 	}
 
-	async create(user: UserAddModel) {
+	async create() {
 		return this.mock;
 	}
 
-	async verifyEmail(email: string) {
+	async verifyEmail() {
 		return null;
 	}
 
-	async findOrCreate(user: UserAddModel) {
+	async findOrCreate() {
 		return this.mock;
 	}
 }
