@@ -14,6 +14,7 @@
     "lint": "npm run lint:eslint -- --ext .ts src/",
     "lint:eslint": "eslint --ignore-path .eslintignore",
     "lint:fix": "npm run lint -- --fix --cache",
+    "prettier": "prettier --config .prettierrc.json --ignore-path ./.prettierignore --write src/**/*.ts",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -102,11 +103,9 @@
     }
   },
   "lint-staged": {
-    "*.{md}": [
-      "prettier --write"
-    ],
-    "*.ts": [
-      "prettier --write"
+    "src/**/*.{ts,json}": [
+      "prettier --write --config .prettierrc.json",
+      "git add"
     ]
   },
   "commitlint": {

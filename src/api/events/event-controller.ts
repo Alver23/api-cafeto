@@ -36,12 +36,14 @@ export class EventController {
 		return imageUrl;
 	}
 
-	public async createEvent(req: Request, res: Response, next: NextFunction) {
+	public async createEvent(req: any, res: Response, next: NextFunction) {
 		try {
 			const imageUrl = this.getFilePath(req);
 			let { body } = req;
-			const { user } = req;
-			body = { ...body, userId: user.id };
+			const {
+				user: { id: userId },
+			} = req;
+			body = { ...body, userId };
 
 			if (imageUrl) {
 				body = {
@@ -56,15 +58,17 @@ export class EventController {
 		}
 	}
 
-	public async updateEvent(req: Request, res: Response, next: NextFunction) {
+	public async updateEvent(req: any, res: Response, next: NextFunction) {
 		try {
 			const imageUrl = this.getFilePath(req);
 			let { body } = req;
 			const {
 				params: { id },
 			} = req;
-			const { user } = req;
-			body = { ...body, userId: user.id };
+			const {
+				user: { id: userId },
+			} = req;
+			body = { ...body, userId };
 
 			if (imageUrl) {
 				body = {
@@ -81,10 +85,11 @@ export class EventController {
 		}
 	}
 
-	public async getEvents(req: Request, res: Response, next: NextFunction) {
+	public async getEvents(req: any, res: Response, next: NextFunction) {
 		try {
-			const { user } = req;
-			const { id: userId } = user;
+			const {
+				user: { id: userId },
+			} = req;
 			const data = await this.eventServiceInstance.findAll({ userId });
 			res.json(
 				setResponse({
