@@ -19,6 +19,7 @@ export const config = {
 	jwt: {
 		secret: process.env.AUTH_JWT_SECRET,
 		expires: process.env.AUTH_JWT_EXPIRES,
+		refresTokenExpires: parseInt(process.env.AUTH_REFRESH_TOKEN_EXPIRES, 10),
 	},
 	staticFiles: {
 		directory: 'public',
@@ -30,4 +31,9 @@ export const config = {
 		apiSecret: process.env.CLOUD_API_SECRET,
 	},
 	sentryDsn: process.env.SENTRY_DSN,
+	redis: {
+		host: process.env.REDIS_HOST,
+		port: parseInt(process.env.REDIS_PORT, 10),
+		password: process.env.REDIS_PASSWORD,
+	},
 };

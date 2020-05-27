@@ -51,7 +51,7 @@ describe('AuthController', () => {
 		it('should return an error', async () => {
 			const errorMessage: string = 'Network Error';
 			jest.spyOn(userServiceMock, 'findOrCreate').mockRejectedValue(new Error(errorMessage));
-			const req: any = mockRequest({ contextData: {} });
+			const req: any = mockRequest({});
 			const res: any = mockResponse();
 			const next: any = jest.fn();
 			await controller.loginProvider(req, res, next);
@@ -59,4 +59,23 @@ describe('AuthController', () => {
 			expect(res.json).not.toHaveBeenCalled();
 		});
 	});
+
+	describe('refreshToken method', () => {
+    it('should the refresh token', async () => {
+      const req = mockRequest({ body: {refreshToken: '12'} });
+      const res = mockResponse();
+      const next = jest.fn();
+      await controller.refreshToken(req, res, next);
+      expect(res.json).toHaveBeenCalled();
+      expect(next).not.toHaveBeenCalled();
+    });
+    it('should return an error', async () => {
+      const req: any = mockRequest({});
+      const res: any = mockResponse();
+      const next: any = jest.fn();
+      await controller.refreshToken(req, res, next);
+      expect(next).toHaveBeenCalled();
+      expect(res.json).not.toHaveBeenCalled();
+    });
+  });
 });

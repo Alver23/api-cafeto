@@ -2,6 +2,8 @@ import * as passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { unauthorized } from '@hapi/boom';
 
+import { HttpMessages } from '../../../core/messages/http-messages';
+
 import { userService } from '../../users/services';
 
 import { config } from '../../../config';
@@ -19,7 +21,7 @@ passport.use(
 				const user = await userService.getUser({ email });
 
 				if (!user) {
-					return cb(unauthorized());
+					return cb(unauthorized(HttpMessages.UNAUTHORIZED));
 				}
 				const data = new UserTransformer(user);
 				return cb(null, { ...data });
