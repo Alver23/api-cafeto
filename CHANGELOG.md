@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Alver23/api-cafeto/compare/v2.0.0...v2.1.0) (2020-05-27)
+
+
+### Features
+
+* add endpoint for refresh token ([8ebf213](https://github.com/Alver23/api-cafeto/commit/8ebf21384a5c1d1b0aaac8d92eb7a220fa019b0f))
+* add models swagger! ([57957cc](https://github.com/Alver23/api-cafeto/commit/57957cc0943a67c2f80a867d023bfc93914efee0))
+* remove variable error ([410321e](https://github.com/Alver23/api-cafeto/commit/410321eeca92eb2064ca3f33f680ac8ee2cb4147))
+
 ## 2.0.0 (2020-05-21)
 
 
