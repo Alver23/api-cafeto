@@ -12,6 +12,9 @@ jest.mock('./auth-controller', () => {
 			loginProvider: (req, res, next) => {
 				return res.status(200).send('fake message');
 			},
+      refreshToken: (req, res, next) => {
+        return res.status(200).send('fake message');
+      },
 		},
 	};
 });
@@ -26,4 +29,8 @@ describe('Auth Router', () => {
 		const response = await supertest(fakeServer).post(`${path}/login-provider`).set('Accept', 'application/json');
 		expect(response.status).toEqual(200);
 	});
+  it('/token POST', async () => {
+    const response = await supertest(fakeServer).post(`${path}/token`).set('Accept', 'application/json');
+    expect(response.status).toEqual(200);
+  });
 });

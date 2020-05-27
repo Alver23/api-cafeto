@@ -1,5 +1,14 @@
 {
-  "id": 1,
-  "name": "fake name",
-  "email": "fake@fake.com"
+  "user": {
+    "id": 1,
+    "name": "fake name",
+    "email": "fake@fake.com"
+  },
+  "config": {
+    "jwt": {
+      "secret": "secret",
+      "expires": "1s",
+      "refresTokenExpires": 30
+    }
+  }
 }

@@ -1,8 +1,10 @@
 // Services
-import { eventService } from './event-service';
+import { CEventService } from './event-service';
+import { RedisServiceMock } from "../../../core/redis/redis-service-mock";
 
 // Mocks
 import eventMock from './../mocks.json';
+import {EventService} from "./event-service-interface";
 
 jest.mock('../../users/models/user', () => jest.fn());
 jest.mock('../models/event', () => {
@@ -18,6 +20,8 @@ jest.mock('../models/event', () => {
 });
 
 describe('EventService', () => {
+  let eventService: EventService;
+  let redisService: any;
 	const expectedProperties = () => ({
 		title: expect.any(String),
 		description: expect.any(String),
@@ -27,6 +31,11 @@ describe('EventService', () => {
 		longitude: expect.any(Number),
 		userId: expect.any(Number),
 	});
+
+	beforeEach(() => {
+    redisService = new RedisServiceMock();
+	  eventService = new CEventService(redisService);
+  });
 
 	describe('create method', () => {
 		it('should get an new event', () => {
@@ -62,6 +71,21 @@ describe('EventService', () => {
 				);
 			});
 		});
+
+		it('should get all events of the cache', () => {
+      redisService.setDataInCache('events', [{ ...eventMock, id: 1, isOwner: true }]);
+      return eventService.findAll({ userId: 1 }).then((response) => {
+        expect(response).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              ...expectedProperties(),
+              id: expect.any(Number),
+              isOwner: expect.any(Boolean),
+            }),
+          ]),
+        );
+      });
+    })
 	});
 
 	describe('findOne method', () => {
