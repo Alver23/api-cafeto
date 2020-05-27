@@ -62,7 +62,29 @@
             "description": "Crear usuario",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/body"
+              "$ref": "#/definitions/auth"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario creado"
+          }
+        }
+      }
+    },
+    "/auth/token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Refrescar token vencido",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Refrescar token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/auth"
             }
           }
         ],
@@ -101,7 +123,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/body_1"
+              "$ref": "#/definitions/user"
             }
           }
         ],
@@ -309,6 +331,47 @@
       "type": "apiKey",
       "name": "Authorization",
       "in": "header"
+    }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "required": ["email", "name", "password"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "auth": {
+      "type": "object",
+      "required": ["email", "name", "password"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "refreshToken": {
+      "type": "object",
+      "required": ["refreshToken"],
+      "properties": {
+        "refreshToken": {
+          "type": "string"
+        }
+      }
     }
   },
   "externalDocs": {
