@@ -28,8 +28,8 @@ export class RedisService {
 		debug('Redis connection was closed.');
 	}
 
-	private onError(err: any): void {
-		debug('There is an error: ');
+	private onError(): void {
+		debug('There is an error');
 	}
 
 	public static getInstance(clientOpts?: ClientOpts): RedisService {
