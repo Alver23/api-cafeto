@@ -8,7 +8,7 @@
     "start:dev": "DEBUG=api-cafeto:* gulp server:dev",
     "start:dev:watch": "DEBUG=api-cafeto:* gulp server:watch",
     "start:dev:debug": "npm run build && node --inspect build/bin/www.js",
-    "test": "jest --config jest.config.json",
+    "test": "jest --config jest.config.json --forceExit --detectOpenHandles --logHeapUsage",
     "test:watch": "DEBUG=test:* npm test -- --verbose --watch",
     "release": "standard-version -a",
     "lint": "npm run lint:eslint -- --ext .ts src/",
