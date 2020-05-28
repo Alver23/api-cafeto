@@ -1,4 +1,5 @@
 import * as passport from 'passport';
+import { CREATED } from 'http-status-codes';
 import { unauthorized } from '@hapi/boom';
 import { NextFunction, Response, Request } from 'express';
 
@@ -58,12 +59,9 @@ export class AuthController {
 			const {
 				body: { refreshToken },
 			} = req;
-			const response = await this.authServiceInstance.refreshToken(refreshToken);
-			res.json(
-				setResponse({
-					data: { ...response },
-				}),
-			);
+			const data = await this.authServiceInstance.refreshToken(refreshToken);
+			const response = setResponse({ data: { ...data }, status: CREATED });
+			res.status(response.status).json(response);
 		} catch (e) {
 			next(e);
 		}
